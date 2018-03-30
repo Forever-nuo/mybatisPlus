@@ -34,8 +34,13 @@ public class DemoEntityWrapper extends BaseController {
     public void getSqlSegment() {
         EntityWrapper entityWrapper = new EntityWrapper();
         entityWrapper.eq("name", "张三");
-        String sqlSegment = entityWrapper.getSqlSegment();
-        System.out.println(sqlSegment);
+     /*   String sqlSegment = entityWrapper.getSqlSegment();
+        System.out.println(sqlSegment);*/
+
+        List<User> userList = new User().selectList(entityWrapper);
+
+
+        System.out.println(userList);
     }
 
     @RequestMapping("/where")

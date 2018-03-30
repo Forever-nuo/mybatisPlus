@@ -58,7 +58,7 @@ public class MpGenerator {
 
         //设置文件的输出目录  (默认"D://")
         gc.setOutputDir(FILE_OUT_DIR);
-        gc.setAuthor(FILE_Author); //设置作者
+        gc.setAuthor("Forever丶诺"); //设置作者
 
         /**
          * 设置生成文件的后缀
@@ -127,7 +127,7 @@ public class MpGenerator {
         strategy.setTablePrefix(tablePrefix);
 
         //需要生成的表(全表名)
-        String[] includeTabName = {"sys_user"};
+        String[] includeTabName = {"person"};
         strategy.setInclude(includeTabName); // 需要生成的表
 
         // 排除生成的表
@@ -185,7 +185,7 @@ public class MpGenerator {
     private void configPackage() {
 
         //父级包名
-        String parentVal = "com.baomidou";
+        String parentVal = "com.baomidou.springmvc";
         //模块名(备注如果设置了模块名,controller类上的@RequestMapping("/模块名/类名"))
         String moduleNameVal = null;
         //实体bean的包名
@@ -199,7 +199,7 @@ public class MpGenerator {
         //service接口的包名
         String serviceVal = "service";
         //service实现类的包名
-        String serviceImpVal = "serviceImpl";
+        String serviceImpVal = "service.impl";
 
         mpg.setPackageInfo(new PackageConfig()
                 .setParent(parentVal)

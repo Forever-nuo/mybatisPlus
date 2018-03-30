@@ -1,19 +1,27 @@
 package com.baomidou.springmvc.model.system;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.FieldFill;
+import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.springmvc.common.SuperEntity;
 import com.baomidou.springmvc.model.enums.TypeEnum;
+import lombok.Data;
 
 /**
  * 系统用户表
  */
 @TableName("sys_user")
-public class User extends SuperEntity {
+@Data
+public class User extends Model<User> {
 
+    @TableId(type= IdType.AUTO)
+    private Long id;
     /**
      * 用户名
      */
@@ -62,5 +70,10 @@ public class User extends SuperEntity {
 
     public void setCtime(Date ctime) {
         this.ctime = ctime;
+    }
+
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
     }
 }

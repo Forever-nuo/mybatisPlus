@@ -1,4 +1,4 @@
-package com.baomidou.springmvc.mapper.system;
+package com.baomidou.springmvc.mapper;
 
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.baomidou.springmvc.common.SuperMapper;
