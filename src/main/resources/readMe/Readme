@@ -1,0 +1,26 @@
+#######
+分支1:
+完成代码生成器的设置
+
+
+--------------------------------------加入模板引擎jar包
+
+		<!-- 模板引擎 -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-engine-core</artifactId>
+			<version>2.0</version>
+		</dependency>
+
+		<!-- 模板引擎，需要指定 mpg.setTemplateEngine(new FreemarkerTemplateEngine()); -->
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.23</version>
+		</dependency>
+
+
+------------------------------------------
+设置 ContVal 类的属性 设置生成属性
+执行 : MpGenerator 类文件中的代码 生成文件
+

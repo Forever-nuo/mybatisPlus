@@ -11,6 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
+      <module name="MpGenertor" target="1.5" />
       <module name="mybatisplus-spring-mvc" target="1.7" />
     </bytecodeTargetLevel>
   </component>
