@@ -16,5 +16,12 @@
     <select id="selectUserList" resultType="com.baomidou.springmvc.model.system.User">
 		SELECT * FROM sys_user WHERE age=#{age}
 	</select>
+    <select id="selectMyPage" resultType="com.baomidou.springmvc.model.system.User">
+
+        SELECT * FROM sys_user
+        <where>
+            ${ew.getSqlSegment}
+        </where>
+    </select>
 
 </mapper>

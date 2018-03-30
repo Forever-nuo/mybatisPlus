@@ -71,7 +71,7 @@
                 <!-- 分页插件配置 -->
                 <bean class="com.baomidou.mybatisplus.plugins.PaginationInterceptor"/>
                 <!-- 性能拦截器，兼打印sql，不建议生产环境配置-->
-                <bean class="com.baomidou.mybatisplus.plugins.PerformanceInterceptor"/>
+                <bean class="com.baomidou.mybatisplus.plugins.PerformanceInterceptor" p:format="true" p:maxTime="200"/>
             </array>
         </property>
         <!-- 全局配置注入 -->

@@ -25,8 +25,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         Page<User> pageUser = new Page<>(2,2);
         Page<User> userPage = pageUser.setRecords(userMapper.selectUserList(pageUser, 15));
         System.out.println(userPage);
-
-
     }
 
 }

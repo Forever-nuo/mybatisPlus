@@ -1,14 +1,17 @@
 package com.baomidou.springmvc.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.mapper.Condition;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.springmvc.mapper.UserMapper;
 import com.baomidou.springmvc.model.system.User;
 import com.baomidou.springmvc.service.system.IUserService;
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.BeanUtilsBean2;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -21,6 +24,10 @@ public class DemoEntityWrapper extends BaseController {
 
     @Autowired
     private IUserService userService;
+
+
+    @Autowired
+    private UserMapper userMapper;
 
     /**
      * 空参数构造方法
@@ -83,5 +90,72 @@ public class DemoEntityWrapper extends BaseController {
     }
 
 
+    /**
+     * 拼接sql语句2
+     */
+    @RequestMapping("/testCondition1")
+    @ResponseBody
+    public int testCondition1() {
+        Wrapper<User> wrap = Condition.create().setSqlSelect("count(1) num").eq("type", 0);
+        int count = userService.selectCount(wrap);
+        System.out.println(count);
+        Condition condition = Condition.create();
+        return count;
+    }
 
+
+    /**
+     * 查询全部(全部字段)
+     */
+    @RequestMapping("/selectAll")
+    public void selectAll() {
+        List<User> users = userService.selectList(new EntityWrapper<User>());
+        System.out.println(users);
+    }
+
+
+    /**
+     * 查询部分字段
+     */
+    @RequestMapping("/selectAll_someColumn")
+    public void selectAll_someColumn() {
+        EntityWrapper<User> ew = new EntityWrapper<>();
+        ew.setSqlSelect("name","type");
+        List<User> userList = userService.selectList(ew);
+    }
+
+
+    /**
+     * 使用map映射结果集
+     */
+    @RequestMapping("/selectAllMap")
+    public  void selectAllMap() {
+        EntityWrapper<User> ew = new EntityWrapper<>();
+        ew.setSqlSelect("name","ctime");
+        List<Map<String, Object>> maps = userService.selectMaps(ew);
+    }
+
+    @RequestMapping("/selectAllObj")
+    public  void selectAllObj() {
+        EntityWrapper<User> ew = new EntityWrapper<>();
+        ew.setSqlSelect("name","ctime");
+        List<Object> objects = userService.selectObjs(ew);
+        //返回了一个对象
+    }
+
+
+    @RequestMapping("/selectAllObj1")
+    public  void selectAllObj1() {
+        EntityWrapper<User> ew = new EntityWrapper<>();
+        ew.setSqlSelect("name","ctime");
+        //返回了一个对象
+    }
+
+
+
+    @RequestMapping("/selectMyPage")
+    public  void selectMyPage() {
+        userMapper.selectMyPage(new RowBounds(10,15),new EntityWrapper<User>());
+        //返回了一个对象
+    }
 }
